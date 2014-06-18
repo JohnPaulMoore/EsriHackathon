@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DbConnect {
 
-	private static final String USERNAME = "esri";
+	private static final String USERNAME = "esra";
 	private static final String PASSWORD = "password";
 	private static final String M_CONN_STRING = "jdbc:mysql://localhost:3306/db_esri";
 	// private static final String M_CONN_STRING = "jdbc:mysql://cork-street.cloudapp.net:3306/db_corkstreet";

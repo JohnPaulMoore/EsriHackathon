@@ -23,10 +23,9 @@ public class MarkersResource {
 
 	private MarkersRepository markerDataSource = new MarkersRepository();
 
+	
 	/**
-	 * 
-	 * @param
-	 * @return  
+	 * @return Response object ArrayList of Marker objects 
 	 * @throws Exception
 	 */
 	@GET
@@ -43,7 +42,11 @@ public class MarkersResource {
 
 
 	
-	
+	/**
+	 * @param Marker object containing lat, lng, title, content text
+	 * @return Response object - int of new Id of the created marker
+	 * @throws Exception
+	 */	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -65,32 +68,14 @@ public class MarkersResource {
 		}
 	}	
 
+		
 	
-	
-//	@PUT
-//	@Path("/update") 
-//	@Consumes(MediaType.APPLICATION_JSON) 
-//	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-//	public Response update(AppointmentJoin appt) throws Exception {
-//	
-//		if (appt == null) {
-//			System.out.println("Update Null");
-//			return Response.status(400).entity("Error: No update data supplied").build(); 
-//		}		
-//		System.out.println("Time booked: " + appt.getTimeBooked() );
-//		boolean success = bookingDataSource.makeUpdate(appt);
-//		if (success) {
-//			return Response.ok(new Gson().toJson(appt), MediaType.APPLICATION_JSON).build();
-//		} 
-//		else {
-//			return Response.status(500).entity("Error: Update error").build(); 
-//		}
-//	}	
-	
-	
-	
-	
-	
+	/**
+	 * 
+	 * @param markerId of marker to be deleted
+	 * @return Response object - boolean of success status
+	 * @throws Exception
+	 */
 	@DELETE
 	@Path("/{markerId}") 
 	@Consumes(MediaType.APPLICATION_JSON) 

@@ -8,14 +8,21 @@ body {
 }
 #wrapper {
     height: 100%;
-    width: 84%;
-    margin: 52px auto 0 auto;
+    width: 100%;
+    margin: 0 auto 0 auto;
+    padding: 52px 0 0 0;
+}
+.clear{
+	clear: both;
 }
 .float-right {
     float: right;
 }
+.float-left {
+    float: left;
+}
 #maps-container {
-    height: 90%;
+    height: 100%;
 }
 #map-canvas { 
     height: 100%;
@@ -28,7 +35,13 @@ body {
 	width: 300px;
 }
 
+.heading-content {
 
+}
+.marker-img{
+	padding: 5px 0 0 0;
+	width: 60px;
+}
 /* Login page responsive design */
 @media (max-width: 366px) {
 	.login-form, .login-btn {

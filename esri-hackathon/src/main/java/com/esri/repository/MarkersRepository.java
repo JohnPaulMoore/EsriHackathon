@@ -12,8 +12,7 @@ import com.esri.model.Marker;
 
 
 /**
- * 
- * Repository class for Bookings CRUD
+ * Repository class for Markers CRUD
  */
 public class MarkersRepository {
 

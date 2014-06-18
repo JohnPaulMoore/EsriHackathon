@@ -10,13 +10,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- CSS -->
-    <link href="http://localhost:8080/esri-hackathon/css/styles.css" rel="stylesheet" /> 
-    <link href="http://localhost:8080/esri-hackathon/css/bootstrap.min.css" rel="stylesheet" /> 
-    <link href="http://localhost:8080/esri-hackathon/css/bootstrap-theme.min.cs" rel="stylesheet" /> 
+	<!-- Note these URLs need to be absolute to cater for Tomcat redirect to login and login-error page -->	 
+    <link href="http://esri-hackathon.cloudapp.net/esri-hackathon/css/styles.css" rel="stylesheet" /> 
+    <link href="http://esri-hackathon.cloudapp.net/esri-hackathon/css/bootstrap.min.css" rel="stylesheet" /> 
+    <link href="http://esri-hackathon.cloudapp.net/esri-hackathon/css/bootstrap-theme.min.css" rel="stylesheet" /> 
 
 	<!-- JavaScript  -->
-    <script src="http://localhost:8080/esri-hackathon/js/jquery-2.0.3.min.js"></script> 
-    <script src="http://localhost:8080/esri-hackathon/js/bootstrap.min.js"></script> 
+    <script src="http://esri-hackathon.cloudapp.net/esri-hackathon/js/jquery-2.0.3.min.js"></script> 
+    <script src="http://esri-hackathon.cloudapp.net/esri-hackathon/js/bootstrap.min.js"></script> 
 	
 
 </head>
@@ -35,7 +36,8 @@
 			<div id="login-error-div">
 				<p>Bad credentials: </p>
 				<p>Click 
-				<a href="http://localhost:8080/esri-hackathon/admin/index.html">here</a> to try again.</p>
+				<!-- URL needs to be absolute to cater for Tomcat redirect to login and login-error page -->	 
+				<a href="http://esri-hackathon.cloudapp.net/esri-hackathon/admin/index.html">here</a> to try again.</p>
 			</div>
 		</div>
 	</div>

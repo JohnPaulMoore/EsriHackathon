@@ -14,12 +14,12 @@
       <param-value>com.esri.rest</param-value>
     </init-param>
     
-    <!-- ResponseCorsFilter -->
+    <!-- ResponseCorsFilter 
 	<init-param>
 	  <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
 	  <param-value>com.esri.security.ResponseCorsFilter</param-value>
 	</init-param>    
-
+	-->
     <load-on-startup>1</load-on-startup>
     
   </servlet>
@@ -29,7 +29,7 @@
     <url-pattern>/web/*</url-pattern>
   </servlet-mapping>
 
- <!-- CORSFilter
+ <!-- CORSFilter  -->
   <filter>
     <filter-name>CORSFilter</filter-name>
     <filter-class>com.esri.security.CORSFilter</filter-class>
@@ -39,7 +39,7 @@
     <filter-name>CORSFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  -->
+
 
   
   <security-constraint>

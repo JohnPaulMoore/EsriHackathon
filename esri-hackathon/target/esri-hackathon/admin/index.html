@@ -46,7 +46,7 @@
 	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
 	                        
 	                    <ul class="dropdown-menu">
-	                        <li><a href="../logout">Logout</a></li>
+	                        <li><a href="../LogoutServlet">Logout</a></li>
 	                    </ul>
                     </li>
                 </ul>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-
+<div class="clear"></div>
 
     <div id="wrapper">
         
@@ -77,11 +77,13 @@
 	<!-- Marker Pop up Template -->		
 	<script id="popup-template" type="text/template">
         <div id="popup-content">
-	        <h3 class="heading-content"> {{ title }} </h3>
-    	    <div class="body-content">
+	        <div>
+				<h3 class="heading-content float-left"> {{ title }} </h3> 
+				<img src="{{imgUrl}}" class="marker-img float-right" />
+			</div>
+    	    <div class="body-content clear">
         		<p> {{ mainText }}</p>
         	</div>
-        	<!-- <button class="btn btn-danger">Delete</button> -->
         </div>
 	</script>
 	
@@ -114,16 +116,18 @@
             /**
              * ESRI Dublin coordinates
              */
-            var myLatlng = new google.maps.LatLng(53.34526, -6.24246);
+            var myLatlng = new google.maps.LatLng(53.37240, -6.33205);
 
             
             
             /**
              * JavaScript object literal to hold map properties
+             * disableDoubleClickZoom: true. Disabled because double click to create marker
              */
             var mapOptions = {
+            	disableDoubleClickZoom: true,
                 center: myLatlng,
-                zoom: 16,
+                zoom: 15,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             
@@ -134,38 +138,24 @@
             
             
             /**
-             * Content fo info window
+             * Content fo hardcoded info window
              */
-            var contentString = 
-            '<div id="content">'+
-                '<div id=" ">'+
-                '</div>'+
-                '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-                '<div id="bodyContent">'+
-                '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-                'sandstone rock formation in the southern part of the '+
-                'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-                'south west of the nearest large town, Alice Springs; 450&#160;km '+
-                '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-                'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-                'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-                'Aboriginal people of the area. It has many springs, waterholes, '+
-                'rock caves and ancient paintings. Uluru is listed as a World '+
-                'Heritage Site.</p>'+
-                '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-                'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-                '(last visited June 22, 2009).</p>'+
-                '</div>'+
-            '</div>';
+            var textContent = "Esri is an exciting company doing important work. Our technology enables organizations to create responsible and sustainable solutions to problems at local and global scales. At Esri, we believe that geography is at the heart of a more resilient and sustainable future. Governments, industry leaders, academics, and nongovernmental organizations (NGOs) trust us to connect them with the analytic knowledge they need to make these critical decisions that shape the planet. ;We invite you to discover ways that you can leverage our technology and expertise in your own organization. "
+            var hardcodedData = { 
+           		title: "ESRI", 
+           		mainText: textContent, 
+           		imgUrl: "http://cf.juggle-images.com/matte/white/280x280/esri-logo-primary.jpg"
+            }
+			var infoTemplate = $('#popup-template').html();
+			var contentTemplate = Mustache.to_html(infoTemplate, hardcodedData);
 
             /**
              * Infowindow 
              */
             var infowindow = new google.maps.InfoWindow({
-                content: contentString,
+                content: contentTemplate,
                 maxWidth: 400
             });
-
             
             /**
              * Hardcoded Marker
@@ -176,7 +166,6 @@
                 title: 'Hello World!'
             });
              
-            
             /**
              * Listener for click event on markers
              */
@@ -230,7 +219,6 @@
             $buttonsDiv =     $('<div id="buttons-div"> </div>');
             $createButton =   $('<button id="create-button" class="btn btn-primary">Create</button>');
             $cancelButton =   $('<button class="btn btn-default" style="background-color: #eee">Cancel</button></div>');
-            // $close =    $('<div><a id="close" href="#">close</a></div>');
 
 
             $modal.hide();

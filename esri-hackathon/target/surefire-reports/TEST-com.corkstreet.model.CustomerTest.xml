@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.146" errors="0" skipped="0" tests="9" name="com.corkstreet.model.CustomerTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_55\jre\bin"/>
+    <property name="java.vm.version" value="24.55-b03"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="IE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Admin\Documents\Git\CorkStreetProject\corkstreet-hair-and-beauty"/>
+    <property name="java.runtime.version" value="1.7.0_55-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_55\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Admin\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="C:\Users\Admin\Documents\Git\CorkStreetProject\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3731291876858551693.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_55\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;D:\app\Admin\product\11.2.0\dbhome_1\bin;c:\program files\common files\microsoft shared\windows live;c:\program files (x86)\common files\microsoft shared\windows live;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\program files\broadcom\broadcom 802.11 network adapter\driver;c:\program files (x86)\windows live\shared;c:\program files\widcomm\bluetooth software\;c:\program files\widcomm\bluetooth software\syswow64;c:\program files (x86)\microsoft sql server\100\tools\binn\;c:\program files\microsoft sql server\100\tools\binn\;c:\program files\microsoft sql server\100\dts\binn\;c:\program files (x86)\microsoft sql server\100\tools\binn\vsshell\common7\ide\;c:\program files (x86)\microsoft sql server\100\dts\binn\;c:\program files\microsoft\web platform installer\;c:\program files (x86)\microsoft asp.net\asp.net web pages\v1.0\;c:\program files\microsoft sql server\110\tools\binn\;c:\program files (x86)\php\v5.3;C:\windows\system32\windowspowershell\v1.0\;c:\program files (x86)\windows kits\8.0\windows performance toolkit\;c:\program files (x86)\microsoft sql server\110\tools\binn\managementstudio\;c:\program files (x86)\microsoft sql server\110\tools\binn\;c:\program files (x86)\microsoft sql server\110\dts\binn\;C:\windows\system32\windowspowershell\v1.0\;c:\program files\ibm\gsk8\lib64;c:\program files (x86)\ibm\gsk8\lib;C:\PROGRA~1\IBM\SQLLIB\BIN;C:\PROGRA~1\IBM\SQLLIB\FUNCTION;C:\PROGRA~1\IBM\SQLLIB\SAMPLES\REPL;%M2%;C:\Progra~1\Java\jdk1.7.0_55;C:\Progra~1\Java\jdk1.7.0_55\bin;%M2_HOME%\bin;C:\Progra~1\Apache Software Foundation\apache-maven-3.1.1\bin;%CATALINA_HOME%\bin;C:\Users\Admin\AppData\Local\Android\android-sdk\platform-tools;C:\Users\Admin\AppData\Local\Android\android-sdk\tools;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\WinAnt\bin;C:\Users\Admin\AppData\Roaming\npm;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\Admin"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="Admin"/>
+    <property name="java.class.path" value="/C:/Program Files/eclipse/configuration/org.eclipse.osgi/bundles/975/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_55\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_55"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_55\jre\lib\ext;C:\windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_55\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_55\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_55\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\Admin\Documents\Git\CorkStreetProject\corkstreet-hair-and-beauty\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="maven.bootclasspath" value="/C:/Program Files/eclipse/configuration/org.eclipse.osgi/bundles/975/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="0.023" classname="com.corkstreet.model.CustomerTest" name="testGetSetEmail"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetAppUser"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetUsername"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetAlertToday"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetTurnOffAlerts"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetPassword"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetFullName"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetUserId"/>
+  <testcase time="0" classname="com.corkstreet.model.CustomerTest" name="testGetSetMobileNumber"/>
+</testsuite>

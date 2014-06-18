@@ -1,0 +1,47 @@
+html { 
+    height: 100% 
+}
+body { 
+    height: 100%; 
+    margin: 0; 
+    padding: 0;
+}
+#wrapper {
+    height: 100%;
+    width: 84%;
+    margin: 52px auto 0 auto;
+}
+.float-right {
+    float: right;
+}
+#maps-container {
+    height: 90%;
+}
+#map-canvas { 
+    height: 100%;
+}
+.login-form {
+	width: 300px;
+	margin: 0 auto;
+}
+.login-btn {
+	width: 300px;
+}
+
+
+/* Login page responsive design */
+@media (max-width: 366px) {
+	.login-form, .login-btn {
+		width: 250px;
+	}
+}
+@media (max-width: 320px) {
+	.login-form, .login-btn {
+		width: 200px;
+	}
+}
+@media (max-width: 250px) {
+	.login-form, .login-btn {
+		width: 160px;
+	}
+}

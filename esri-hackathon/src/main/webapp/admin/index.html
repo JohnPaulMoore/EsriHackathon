@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	
+    <title>ESRI</title>
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../css/bootstrap-dark.min.css">
+    
+    <!-- App CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/modal-styles.css">
+
+    <!-- JavaScript Lib's -->
+    <script src="../js/jquery-2.0.3.min.js"> </script>
+    <script src="../js/bootstrap.min.js"> </script>
+    <script src="../js/mustache.js"> </script>
+    
+</head>
+
+<body>
+      
+    <!-- Navigation bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">My Hackathon Web site</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="earthquakes.html">Earthquake data</a></li>
+                    <li><a href="largest-cities.html">Largest cities data</a></li>
+                    
+                    <li class="dropdown">
+	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
+	                        
+	                    <ul class="dropdown-menu">
+	                        <li><a href="../logout">Logout</a></li>
+	                    </ul>
+                    </li>
+                </ul>
+            </div><!-- nav-collapse -->
+        </div>
+    </div>
+
+
+
+    <div id="wrapper">
+        
+        <div id="maps-container">
+            <div id="map-canvas"> </div>
+        </div>
+        
+    </div> <!-- End wrapper -->
+
+    
+    
+    
+    
+    <!-- Google Maps API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF9VLq3bVUvMANbd-cdboOy79yVNscnss"> 
+    </script>
+       
+       
+       
+	<!-- Marker Pop up Template -->		
+	<script id="popup-template" type="text/template">
+        <div id="popup-content">
+	        <h3 class="heading-content"> {{ title }} </h3>
+    	    <div class="body-content">
+        		<p> {{ mainText }}</p>
+        	</div>
+        	<!-- <button class="btn btn-danger">Delete</button> -->
+        </div>
+	</script>
+	
+	
+	 
+    <!-- App JavaScript -->
+    <script type="text/javascript">
+        
+        /*
+         * Globals
+         */
+        var map;
+        // var baseUrl = "localhost:8080";
+        var baseUrl = "esri-hackathon.cloudapp.net";
+       
+
+        
+        /**
+         * Google maps event listener. When load event fires call initialize
+         * Alt <body onload="initializeMap()">
+         */
+         // google.maps.event.addDomListener(window, 'load', initialiseMap);
+        document.addEventListener('DOMContentLoaded', initialiseMap);      
+        
+        
+        /**
+         * Initialise Google Map 
+         */
+        function initialiseMap() {            
+            /**
+             * ESRI Dublin coordinates
+             */
+            var myLatlng = new google.maps.LatLng(53.34526, -6.24246);
+
+            
+            
+            /**
+             * JavaScript object literal to hold map properties
+             */
+            var mapOptions = {
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            
+            /**
+             * map object - passing it the div element and the map properties
+             */
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            
+            
+            /**
+             * Content fo info window
+             */
+            var contentString = 
+            '<div id="content">'+
+                '<div id=" ">'+
+                '</div>'+
+                '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+                '<div id="bodyContent">'+
+                '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+                'sandstone rock formation in the southern part of the '+
+                'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+                'south west of the nearest large town, Alice Springs; 450&#160;km '+
+                '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+                'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+                'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+                'Aboriginal people of the area. It has many springs, waterholes, '+
+                'rock caves and ancient paintings. Uluru is listed as a World '+
+                'Heritage Site.</p>'+
+                '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+                '(last visited June 22, 2009).</p>'+
+                '</div>'+
+            '</div>';
+
+            /**
+             * Infowindow 
+             */
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 400
+            });
+
+            
+            /**
+             * Hardcoded Marker
+             */          
+             var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Hello World!'
+            });
+             
+            
+            /**
+             * Listener for click event on markers
+             */
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+            });
+
+            google.maps.event.addListener(map, 'dblclick', function(event) {
+                placeMarker(event.latLng);
+            });
+        }
+
+        /**
+         * User marker create
+         */
+        function placeMarker(location) {
+            modal.open({width: "500px", height: "260px", location: location});
+        }
+
+        
+        
+        
+         /**
+         * User marker create modal
+         */       
+        var modal = (function(){
+            var method = {}, $overlay, $modal, $content, $createButton, $cancelButton, $form, $buttonsDiv;
+
+            // Append the HTML
+
+            // Center the modal in the viewport
+            method.center = function () {};
+
+            // Open the modal
+            method.open = function (settings) {};
+
+            // Close the modal
+            method.close = function () {};
+    
+        
+            $overlay =  $('<div id="overlay"></div>');
+            
+            $modal =    $('<div id="modal"></div>');
+            $form =     $('<form role="form" id="create-marker-form"><div id="modal-title">Title</div></form>');
+            $content =  $('<div id="content">'+
+                                '<label for="header-text">Title</label>'+
+                                '<div><input id="header-text" class="form-control" /></div>'+
+                                '<label for="body-text">Description</label>'+
+                                '<div><textarea id="body-text" class="form-control"></textarea></div>'+
+                          '</div>');
+            $buttonsDiv =     $('<div id="buttons-div"> </div>');
+            $createButton =   $('<button id="create-button" class="btn btn-primary">Create</button>');
+            $cancelButton =   $('<button class="btn btn-default" style="background-color: #eee">Cancel</button></div>');
+            // $close =    $('<div><a id="close" href="#">close</a></div>');
+
+
+            $modal.hide();
+            $overlay.hide();
+            $buttonsDiv.append($createButton, $cancelButton);
+            $form.append($content, $buttonsDiv);
+            $modal.append($form);
+
+            method.open = function (settings) {
+               //  $content.empty().append(settings.content);
+
+                console.log(settings.location);
+                $("#modal-title").html(settings.location.A +" : "+ settings.location.k);
+                
+                $modal.css({
+                    height: settings.height || "auto",
+                    width: settings.width || "auto"
+                });
+
+                method.center();
+
+                $(window).bind('resize.modal', method.center);
+
+                $modal.show();
+                $overlay.show();
+                
+                $createButton.click(function(e){
+                    console.log(settings.location);
+                    e.preventDefault();
+                    method.close();
+                    
+                    var newMarker = new google.maps.Marker({
+                        position: settings.location,
+                        map: map,
+                        title:  $("#header-text").val()
+                    });
+                    
+                    var dataSend = JSON.stringify({ 
+                        latitude: settings.location.k,
+                        longitude: settings.location.A,
+                        title: $("#header-text").val(),
+                        mainText: $("#body-text").val() 
+                    });
+                    
+                    $.ajax({
+                        type: "POST", 
+                        url: 'http://'+baseUrl+'/esri-hackathon/web/marker', 
+                        timeout: 10000,   
+                        contentType: "application/json", 
+                        dataType: "json", 						
+                        data: dataSend,				 
+                        success: function (data, status, jqXHR) {
+
+                            var infoWindow = new google.maps.InfoWindow;
+            
+    						var template = $('#popup-template').html();
+    						var content = Mustache.to_html(template, data);
+
+                            bindInfoWindow(newMarker, map, infoWindow, content);
+                        },
+                        error: function (jqXHR, status, error) {
+                            alert("Ajax POST error " + status );
+                        }
+                    });
+                    
+                    $("#create-marker-form").trigger("reset");
+                    settings.location = null;
+                });
+                
+                $cancelButton.click(function(e){
+                    e.preventDefault();
+                    method.close();
+                    $("#create-marker-form").trigger("reset");
+                    settings.location = null;
+                });
+            };
+
+
+            method.close = function () {
+                $modal.hide();
+                $overlay.hide();
+                // $content.empty();
+                $(window).unbind("resize.modal");
+            };
+
+            
+
+            method.center = function () {
+                var top, left;
+
+                top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+                left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+                $modal.css({
+                    top:top + $(window).scrollTop(), 
+                    left:left + $(window).scrollLeft()
+                });
+            };
+            
+            $(document).ready(function(){
+                $("body").append($overlay, $modal);
+            });
+            
+            return method;
+        }());
+
+        
+        
+        
+        /**
+         * Document ready
+         */
+        $(document).ready(function(){
+            // modal.open({content: $("<p>Howdy</p>"), width: "500px", height: "200px"});
+            
+            
+            $.ajax({
+                type: "GET", 
+                url: 'http://'+baseUrl+'/esri-hackathon/web/marker', 
+                timeout: 10000,   
+                dataType: "json", 								 
+                success: function (data, status, jqXHR) {
+                    
+                    var infoWindow = new google.maps.InfoWindow;
+
+                    for(var i = 0; i < data.length; i++) {
+                        var point = new google.maps.LatLng(
+                            parseFloat(data[i].latitude),
+                            parseFloat(data[i].longitude)
+                        );
+                        
+                        var remoteMarker = new google.maps.Marker({
+                            position: point,
+                            map: map,
+                            title: data[i].title
+                        });
+ 
+						var template = $('#popup-template').html();
+						var content = Mustache.to_html(template, data[i]);
+                        
+                        bindInfoWindow(remoteMarker, map, infoWindow, content);
+                    }
+                },
+                error: function (jqXHR, status, error) {
+                    alert("Ajax GET error " + status );
+                }
+            });      
+
+        });
+        
+        function deleteMarker(marker) {
+            console.log("In delete " + marker);
+//            $('#'+id).remove();
+//            marker.setMap(null);
+        }
+        
+        function bindInfoWindow(marker, map, infoWindow, html) {
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.setContent(html);
+                infoWindow.open(map, marker);
+            });
+        }
+        
+    </script>
+
+</body>
+</html>

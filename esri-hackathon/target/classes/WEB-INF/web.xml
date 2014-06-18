@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>esri-hackathon</display-name>
+  <welcome-file-list>
+    <welcome-file>admin/index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.esri.rest</param-value>
+    </init-param>
+    
+    <!-- ResponseCorsFilter -->
+	<init-param>
+	  <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+	  <param-value>com.esri.security.ResponseCorsFilter</param-value>
+	</init-param>    
+
+    <load-on-startup>1</load-on-startup>
+    
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <url-pattern>/web/*</url-pattern>
+  </servlet-mapping>
+
+ <!-- CORSFilter
+  <filter>
+    <filter-name>CORSFilter</filter-name>
+    <filter-class>com.esri.security.CORSFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>CORSFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  -->
+
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Admin</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+      <http-method>DELETE</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>HEAD</http-method>
+      <http-method>PUT</http-method>
+      <http-method>OPTIONS</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Admin</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>Admin</realm-name>
+    <form-login-config>
+      <form-login-page>/login.html</form-login-page>
+      <form-error-page>/login-error.html</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description></description>
+    <role-name>Admin</role-name>
+  </security-role>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error-pages/403-error.html</location>
+  </error-page>
+  
+  <session-config>
+    <session-timeout>480</session-timeout>
+  </session-config>
+</web-app>
